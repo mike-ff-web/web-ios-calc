@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }                                                    
+        .bannerparent {
+            margin: 0 auto;
+            width: 200px;
+            overflow:hidden;
+            font-size: 0px;
+        }
+
+        .gdvn {
+
+            height: 200px;
+            width: auto;
+            min-width: 200px;
+            margin: 0px;
+            display: inline-flex;
+            position: relative;
+            font-size: 0px;
+            overflow: hidden;
+        }
+        .startAnimation{
+            animation: mylove 1s ease 2s;
+        }
+
+        .gdvn img{
+            height: 200px;
+            width: 200px;
+        }
+
+        @keyframes mylove {
+            from {
+                left: 0px;
+            }
+
+            to {
+                left: -200px;
+            }
+        }
+
+        @-webkit-keyframes mylove {
+            from {
+                left: 0px;
+            }
+
+            to {
+                left: -200px;
+            }
+        }
+
+        #gfhg {
+            display: flex;
+            position: relative;
+            top: -25px;
+            z-index: 999;
+            padding: 2px 0px 2px 5px;
+            width: 50px;
+            opacity: 0.5;
+            margin: 0 auto;
+            text-align: center;
+            border-radius: 5px;
+            background-color: black;
+            opacity: 50%;
+            
+        }
+        #gfhg div{
+            cursor: pointer;
+        }
+
+        .fufu {
+            width: 5px;
+            height: 5px;
+            border-radius: 100%;
+            margin-right: 5px;
+            background-color: gray;                    
+        }
+        .bjys
+        {  
+            background-color: red;
+            opacity: none ;
+        }
+    </style>
+
+</head>
+
+<body>                                                            
+    
+    
+    <div class="bannerparent" id="idbannerparent" >
+        <div id="p1" class="gdvn startAnimation" ><img  src="1.jpg" alt="" tag="0"><img  src="2.jpg" alt="" tag="1"><img  src="3.jpg" alt="" tag="2"><img src="4.jpg" alt="" tag="3"><img src="5.jpg" alt="" tag="4"></div>
+        <div id="gfhg"><div onclick="anclick(this)" tag="0" class="fufu bjys"  ></div><div onclick="anclick(this)" tag="1" class="fufu"></div><div onclick="anclick(this)" tag="2" class="fufu"></div><div onclick="anclick(this)" tag="3" class="fufu"></div><div onclick="anclick(this)" tag="4" class="fufu"></div></div>
+   </div>
+    <script>   
+        var x = document.getElementById("idbannerparent");
+
+        // Chrome, Safari 和 Opera 代码
+        //x.addEventListener("webkitAnimationEnd", myStartFunction);
+
+        // 标准语法
+        x.addEventListener("animationend", myStartFunction);
+        function myStartFunction() {
+            //document.getElementById("p1").style.left = "-200px";
+            var p1 = document.getElementById("p1");
+            p1.classList.remove("startAnimation");
+            var rc = p1.removeChild(p1.childNodes[0]);
+            p1.appendChild(rc);
+            var p2 = document.getElementById("gfhg");
+            for (var index = 0; index < p2.childNodes.length; index++) {
+                var  element = p2.childNodes[index];
+                element.classList.remove("bjys");
+            }
+            p2.childNodes[p1.childNodes[0].getAttribute("tag")].classList.add("bjys");
+            void p1.offsetWidth;
+            p1.classList.add("startAnimation");
+        }
+        function anclick(params) {
+            alert(params.getAttribute("tag"))
+
+        }
+        
+        
+    </script>
+</body>
+</html>
